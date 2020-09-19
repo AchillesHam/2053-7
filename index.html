@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>CodePen - 2053-7</title>
+  
+  
+  
+  
+<style>
+body {
+  background:url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.edweek.org%2Fmedia%2F2017%2F10%2F04%2Fscience-math-getty-social.jpg&f=1&nofb=1");
+  color:white;
+  
+}
+#div{
+  background-color:grey;
+  width:950px;
+}
+.incorrect{
+  background-color:red;
+}
+.correct{
+  background-color:green;
+}
+
+#check_answers {
+  background-color:white;
+  curser:pointer;
+}
+</style>
+
+  
+  
+  
+  
+
+</head>
+
+<body translate="no" >
+  <html>
+<body>
+<audio id="good job sound" >
+<source src="https://achillesham.github.io/2052-7/Nice.m4a" type="audio/mpeg">
+</audio>
+<h1>Achilles' Super Awsome Math Review</h1>
+<div>Timer: <span id="timer">0</span></div>
+<div id="div">
+<ol>
+  <li><input id="q1" data-correct="a87ff679a2f3e71d9181a67b7542122c">2+2?</li>
+  <li><input id="q2" data-correct="45c48cce2e2d7fbdea1afc51c7c6ad26">3^2?</li>
+  <li><input id="q3" data-correct="1e5f75cb6201b5b46d9564dfd57a7e99">If i have 2332322 watermelons and i eat half of them how many watermelons do i have?</li>
+  <li><input id="q4" data-correct="c20ad4d76fe97759aa27a0c99bff6710">x^2=144?</li>
+  <li><input id="q5" data-correct="8f14e45fceea167a5a36dedd4bea2543">sqrt(49)?</li>
+  <li><input id="q6" data-correct="2496af30b64c3a4ff21e8505ea439a73">If i roll a fair 6-sided die what is the probability in percents that the number it lands on is even?</li>
+  <li><input id="q7" data-correct="1ff1de774005f8da13f42943881c655f">4!?</li>
+  <li><input id="q8" data-correct="8000d44d92b4ea5aba46b13bd938e0e4">12-33?</li>
+  <li><input id="q9" data-correct="1b0fd9efa5279c4203b7c70233f86dbf">10*-1</li>
+  <li><input id="q10"data-correct="19ca14e7ea6328a42e0eb13d585e4c22">Whats 3 multipliyed by 12?</li>
+</div>
+<ol/>
+<button id="check_answers">Check Answers</button>
+</body>
+</html>
+  
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.12.0/js/md5.min.js'></script>
+  
+      <script id="rendered-js" >
+let timer = 0;
+let numQuestions = 10;
+let nice = document.getElementById("good job sound");
+function addSecond(){
+  timer+=1;
+  
+  $("#timer").text(timer);
+}
+function checkAnswers(){
+  let counter=0;
+  for (let i=1;i<=numQuestions;i++){
+    let questionNum="q"+i;
+    let question= document.getElementById(questionNum);
+    let correct=question.getAttribute('data-correct');
+    let response=md5(question.value);
+    console.log(md5(correct));
+    if (correct==='string'){
+      correct=correct.toLowerCase();
+   }
+    response=response.toLowerCase();
+
+    if (correct==response){
+      question.classList.add("correct");
+      question.classList.remove("incorrect");
+      counter=counter+1;
+    }
+    else{
+      question.classList.add("incorrect");
+      question.classList.remove("correct");
+    }
+    
+  }
+  if (counter==numQuestions){
+    nice.play();
+  }
+}
+
+$("#check_answers").click(checkAnswers)
+setInterval(addSecond,1000);
+    </script>
+
+  
+
+</body>
+
+</html>
+ 
